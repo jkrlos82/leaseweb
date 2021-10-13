@@ -10,4 +10,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * @OA\Info(
+     *   title="Leaseweb Servers API",
+     *   version="1.0",
+     *   description="Leaseweb test with Servers List and filters"
+     * )
+     */
 }

@@ -1,0 +1,142 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Leaseweb Servers API",
+        "description": "Leaseweb test with Servers List and filters",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/servers": {
+            "get": {
+                "tags": [
+                    "servers"
+                ],
+                "operationId": "listServers",
+                "responses": {
+                    "200": {
+                        "description": "Return Servers List details",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: seems to be a problem with the server."
+                    },
+                    "400": {
+                        "description": "Error: Bad request."
+                    }
+                }
+            }
+        },
+        "/api/servers/filters": {
+            "post": {
+                "tags": [
+                    "servers"
+                ],
+                "summary": "Filter the servers list",
+                "operationId": "filter the servers list",
+                "requestBody": {
+                    "description": "Filters to be used",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "filters": {
+                                        "properties": {
+                                            "Storage": {
+                                                "properties": {
+                                                    "start": {
+                                                        "type": "string",
+                                                        "example": "1TB"
+                                                    },
+                                                    "end": {
+                                                        "type": "string",
+                                                        "example": "72TB"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "RAM": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "default": "64GB",
+                                                    "enum": [
+                                                        "2GB",
+                                                        "4GB",
+                                                        "8GB",
+                                                        "12GB",
+                                                        "16GB",
+                                                        "24GB",
+                                                        "32GB",
+                                                        "48GB",
+                                                        "64GB",
+                                                        "96GB"
+                                                    ]
+                                                },
+                                                "collectionFormat": "multi"
+                                            },
+                                            "HardDisk_Type": {
+                                                "type": "string",
+                                                "example": "SATA"
+                                            },
+                                            "Location": {
+                                                "type": "string",
+                                                "example": "AmsterdamAMS-01"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return filter Servers List details",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request."
+                    }
+                }
+            }
+        },
+        "/api/servers/filters/location": {
+            "get": {
+                "tags": [
+                    "servers"
+                ],
+                "operationId": "listLocations",
+                "responses": {
+                    "200": {
+                        "description": "Return Location List details",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: seems to be a problem with the server."
+                    },
+                    "400": {
+                        "description": "Error: Bad request."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
